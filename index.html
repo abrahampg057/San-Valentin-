@@ -1,130 +1,128 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>San Valentín 💗</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Fuente bonita -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+<title>Para Daryan 💗</title>
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, sans-serif;
+}
 
-    body{
-      height:100vh;
+body{
+  height:100vh;
+  background: url("IMG-20260205-WA0006.jpg") no-repeat center center/cover;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
 
-      /* 👇 AQUÍ VA TU FOTO */
-      background: url("IMG-20260205-WA0006.jpg") no-repeat center center/cover;
+/* capa rosita suave */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(255,192,203,0.35);
+}
 
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      color:white;
-    }
+/* tarjeta principal */
+.caja{
+  position:relative;
+  z-index:1;
+  background:rgba(255, 220, 230, 0.9);
+  padding:25px;
+  border-radius:20px;
+  max-width:320px;
+  width:90%;
+  text-align:center;
+}
 
-    /* Capa rosita transparente encima */
-    .overlay{
-      position:absolute;
-      inset:0;
-      background:rgba(255, 170, 190, 0.45);
-      backdrop-filter: blur(2px);
-    }
+/* textos */
+h1{
+  font-size:28px;
+  margin-bottom:10px;
+}
 
-    .contenedor{
-      position:relative;
-      z-index:2;
-      max-width:350px;
-      padding:20px;
-    }
+.pregunta{
+  margin:15px 0;
+  font-size:18px;
+}
 
-    h1{
-      font-family:'Great Vibes', cursive;
-      font-size:38px;
-      margin-bottom:10px;
-    }
+/* botones */
+.botones{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:15px;
+}
 
-    .nombre{
-      font-size:28px;
-      margin:10px 0;
-      font-weight:500;
-    }
+button{
+  padding:12px;
+  font-size:18px;
+  border:none;
+  border-radius:15px;
+  cursor:pointer;
+  transition:.2s;
+}
 
-    .texto{
-      font-size:18px;
-      opacity:.9;
-      margin-bottom:25px;
-    }
+/* botón sí */
+.si{
+  background:black;
+  color:white;
+}
 
-    .btn{
-      width:100%;
-      padding:14px;
-      border:none;
-      border-radius:16px;
-      font-size:18px;
-      cursor:pointer;
-      transition:.2s;
-      margin-bottom:12px;
-    }
+/* botón no */
+.no{
+  background:white;
+  color:black;
+}
 
-    .si{
-      background:#ff4d5a;
-      color:white;
-      font-weight:500;
-    }
-
-    .si:hover{
-      transform:scale(1.05);
-    }
-
-    .no{
-      background:rgba(255,255,255,.25);
-      color:white;
-    }
-
-    footer{
-      margin-top:25px;
-      font-size:14px;
-      opacity:.7;
-    }
-  </style>
+/* gif final */
+#gifFinal{
+  display:none;
+  margin-top:15px;
+  width:100%;
+  border-radius:15px;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="overlay"></div>
+<div class="caja">
 
-  <div class="contenedor">
-    <h1>¿Quieres ser mi Valentín? 💗</h1>
+  <h1>Hola corazón 💌</h1>
 
-    <div class="nombre">Daryan 🦁</div>
-
-    <div class="texto">
-      Si dices que sí te doy una mordidota 😳
-    </div>
-
-    <button class="btn si" onclick="aceptar()">Sí 🤞</button>
-    <button class="btn no" onclick="moverNo(this)">No</button>
-
-    <footer>Hecho con Love Pages 💕</footer>
+  <div class="pregunta">
+    ¿Quieres ser mi San Valentín?  
+    No acepto un no por respuesta…
   </div>
+
+  <div class="botones">
+    <button class="si" onclick="aceptar()">Sí 🤞</button>
+    <button class="no" onclick="moverNo(this)">No</button>
+  </div>
+
+  <!-- GIF -->
+  <img id="gifFinal" src="gif.gif">
+
+</div>
 
 <script>
 function aceptar(){
-  alert("Sabía que dirías que sí 😍💗");
+  document.getElementById("gifFinal").style.display="block";
 }
 
 function moverNo(btn){
   const x = Math.random() * (window.innerWidth - btn.clientWidth);
   const y = Math.random() * (window.innerHeight - btn.clientHeight);
 
-  btn.style.position = "absolute";
+  btn.style.position = "fixed";
   btn.style.left = x + "px";
   btn.style.top = y + "px";
 }
@@ -132,4 +130,3 @@ function moverNo(btn){
 
 </body>
 </html>
-
