@@ -2,76 +2,134 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>San Valentín Interactivo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>San Valentín 💗</title>
+
+  <!-- Fuente bonita -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      /* Imagen de fondo embebida */
-      background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAEU...") 
-                  no-repeat center center fixed;
-      background-size: cover;
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: 'Poppins', sans-serif;
     }
-    #recuadro2 {
-      width: 90%;
-      max-width: 600px;
-      margin: 2rem auto;
-      padding: 1rem;
-      background: rgba(255, 255, 255, 0.85);
-      height: auto;
-      text-align: center;
+
+    body{
+      height:100vh;
+
+      /* 👇 AQUÍ VA TU FOTO */
+      background: url("IMG-20260205-WA0006.jpg") no-repeat center center/cover;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:white;
     }
-    .buttons-container {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-top: 1rem;
+
+    /* Capa rosita transparente encima */
+    .overlay{
+      position:absolute;
+      inset:0;
+      background:rgba(255, 170, 190, 0.45);
+      backdrop-filter: blur(2px);
     }
-    button {
-      flex: 1;
-      padding: 1rem;
-      border: none;
-      background-color: #e91e63;
-      color: white;
-      font-size: 1.2rem;
-      cursor: pointer;
-      border-radius: 50px; /* esquinas muy redondeadas */
+
+    .contenedor{
+      position:relative;
+      z-index:2;
+      max-width:350px;
+      padding:20px;
     }
-    /* Animación de corazones detrás del contenido */
-    .corazones-animados {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none; /* deja pasar clics al contenido */
-      z-index: -1;
-      /* Aquí irían los estilos/animaciones de los corazones */
+
+    h1{
+      font-family:'Great Vibes', cursive;
+      font-size:38px;
+      margin-bottom:10px;
+    }
+
+    .nombre{
+      font-size:28px;
+      margin:10px 0;
+      font-weight:500;
+    }
+
+    .texto{
+      font-size:18px;
+      opacity:.9;
+      margin-bottom:25px;
+    }
+
+    .btn{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:16px;
+      font-size:18px;
+      cursor:pointer;
+      transition:.2s;
+      margin-bottom:12px;
+    }
+
+    .si{
+      background:#ff4d5a;
+      color:white;
+      font-weight:500;
+    }
+
+    .si:hover{
+      transform:scale(1.05);
+    }
+
+    .no{
+      background:rgba(255,255,255,.25);
+      color:white;
+    }
+
+    footer{
+      margin-top:25px;
+      font-size:14px;
+      opacity:.7;
     }
   </style>
 </head>
+
 <body>
-  <div class="corazones-animados">
-    <!-- Aquí se colocarían los elementos SVG o divs animados de corazones -->
-  </div>
 
-  <div id="recuadro2">
-    <h1>¡Hola Corazón!</h1>
-    <p>Te tengo una pregunta... ¿Quieres ser mi San Valentín? No acepto un no por respuesta.</p>
-    <div class="buttons-container">
-      <button id="btnSi">Sí</button>
-      <button id="btnNo">No</button>
+  <div class="overlay"></div>
+
+  <div class="contenedor">
+    <h1>¿Quieres ser mi Valentín? 💗</h1>
+
+    <div class="nombre">Daryan 🦁</div>
+
+    <div class="texto">
+      Si dices que sí te doy una mordidota 😳
     </div>
-    <!-- GIF final embebido en Base64 -->
-    <img id="finalGif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA..."
-         style="display:none; margin-top: 1rem;" alt="Gif de celebración">
+
+    <button class="btn si" onclick="aceptar()">Sí 🤞</button>
+    <button class="btn no" onclick="moverNo(this)">No</button>
+
+    <footer>Hecho con Love Pages 💕</footer>
   </div>
 
-  <script>
-    // Ejemplo: mostrar el GIF al hacer clic en "Sí"
-    document.getElementById('btnSi').onclick = function() {
-      document.getElementById('finalGif').style.display = 'block';
-    };
-  </script>
+<script>
+function aceptar(){
+  alert("Sabía que dirías que sí 😍💗");
+}
+
+function moverNo(btn){
+  const x = Math.random() * (window.innerWidth - btn.clientWidth);
+  const y = Math.random() * (window.innerHeight - btn.clientHeight);
+
+  btn.style.position = "absolute";
+  btn.style.left = x + "px";
+  btn.style.top = y + "px";
+}
+</script>
+
 </body>
 </html>
 
