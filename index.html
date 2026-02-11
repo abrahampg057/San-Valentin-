@@ -1,176 +1,77 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>San Valent\u00edn Interactivo</title>
-<style>
-html, body {
-  margin: 0; padding: 0;
-  height: 100%;
-}
-body {
-  background: url("data:image/jpeg;base64,BASE64_IMAGEN_FONDO") no-repeat center center fixed;
-  background-size: cover;
-}
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(255,192,203,0.5);
-}
-#recuadro2 {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(255,182,193,0.4);
-  padding: 20px;
-  text-align: center;
-  border-radius: 10px;
-}
-#recuadro2 h1 {
-  margin: 0;
-  font-size: 2em;
-  font-weight: bold;
-}
-#recuadro2 p {
-  margin: 10px 0;
-  font-size: 1.2em;
-}
-#cajaPregunta {
-  background: rgba(255,255,255,0.2);
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 5px;
-}
-#recuadro3 {
-  background: rgba(255,192,203,0.2);
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 5px;
-}
-#recuadro3 button {
-  padding: 10px 20px;
-  margin: 5px;
-  font-size: 1em;
-}
-#btnYes {
-  background: black;
-  color: white;
-  border: none;
-}
-#btnNo {
-  background: white;
-  color: black;
-  border: none;
-}
-#texto5 {
-  margin-top: 10px;
-  font-size: 0.9em;
-}
-.heart {
-  position: fixed;
-  top: -30px;
-  font-size: 1.5em;
-  color: red;
-  animation: fall 1.5s linear forwards;
-}
-@keyframes fall {
-  to { transform: translateY(110vh); opacity: 0; }
-}
-#final {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  background: rgba(255,255,255,0.5);
-  padding: 20px;
-  text-align: center;
-  border-radius: 10px;
-}
-#final h1 {
-  margin: 0;
-  font-size: 2em;
-  color: red;
-}
-#final p {
-  margin: 10px 0;
-  font-size: 1.2em;
-}
-#final img {
-  width: 200px;
-  margin-top: 10px;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>San Valentín Interactivo</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      /* Imagen de fondo embebida */
+      background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAEU...") 
+                  no-repeat center center fixed;
+      background-size: cover;
+    }
+    #recuadro2 {
+      width: 90%;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.85);
+      height: auto;
+      text-align: center;
+    }
+    .buttons-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    button {
+      flex: 1;
+      padding: 1rem;
+      border: none;
+      background-color: #e91e63;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border-radius: 50px; /* esquinas muy redondeadas */
+    }
+    /* Animación de corazones detrás del contenido */
+    .corazones-animados {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; /* deja pasar clics al contenido */
+      z-index: -1;
+      /* Aquí irían los estilos/animaciones de los corazones */
+    }
+  </style>
 </head>
 <body>
-<div id="recuadro2">
-  <h1>Hola Coraz\u00f3n 💌🦦</h1>
-  <p>Te tengo una pregunta...</p>
-  <div id="cajaPregunta">¿Quieres ser mi San Valent\u00edn? No acepto un no por respuesta...</div>
-  <div id="recuadro3">
-    <button id="btnYes">S\u00ed 🫰🏻</button>
-    <button id="btnNo">No</button>
+  <div class="corazones-animados">
+    <!-- Aquí se colocarían los elementos SVG o divs animados de corazones -->
   </div>
-  <p id="texto5">Elige bien (no tienes opci\u00f3n)</p>
-</div>
-<script>
-// Efecto de corazones cayendo
-window.onload = function() {
-  for (let i = 0; i < 20; i++) {
-    let heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.innerText = '❤';
-    heart.style.left = Math.random() * 100 + '%';
-    heart.style.animationDelay = (Math.random() * 1.5) + 's';
-    document.body.appendChild(heart);
-  }
-  setTimeout(() => {
-    document.querySelectorAll('.heart').forEach(h => h.remove());
-  }, 1500);
-};
 
-// Dinámica de los botones
-let noCount = 0;
-const btnYes = document.getElementById('btnYes');
-const btnNo = document.getElementById('btnNo');
-const texto5 = document.getElementById('texto5');
-const phrases = [
-  "Di que s\u00ed", "Por favor dale a s\u00ed", "Sabemos que quieres darle un s\u00ed",
-  "Si le das a s\u00ed te doy una mordida", "¡\u00c1ndale canelita chapopote!",
-  "Ya casi dar\u00e1s a s\u00ed", "Yo s\u00e9 que s\u00ed quieres", "Casi lo tienes",
-  "Mi coraz\u00f3n dice que s\u00ed", "DARYAN DALE A S\u00cd NO SEAS TERCA"
-];
-btnNo.addEventListener('click', () => {
-  noCount++;
-  if (noCount <= 5) {
-    let scaleYes = 1 + noCount * 0.2;
-    let scaleNo = 1 - noCount * 0.2;
-    btnYes.style.transform = `scale(${scaleYes})`;
-    btnNo.style.transform = `scale(${scaleNo < 0 ? 0 : scaleNo})`;
-  } else {
-    let randScale = 1 + Math.random() * 3; // hasta 4x
-    btnYes.style.transform = `scale(${randScale})`;
-    btnNo.style.transform = `scale(${1/randScale})`;
-    if (Math.random() < 0.5) {
-      // intercambiar posiciones
-      let parent = btnYes.parentNode;
-      parent.insertBefore(btnNo, btnYes);
-    }
-  }
-  if (noCount <= 10) {
-    texto5.textContent = phrases[noCount - 1];
-  } else {
-    texto5.textContent = phrases[Math.floor(Math.random() * phrases.length)];
-  }
-});
-btnYes.addEventListener('click', () => {
-  document.getElementById('recuadro2').remove();
-  const final = document.createElement('div');
-  final.id = 'final';
-  final.innerHTML = '<h1>Siiiii ❤️</h1><p>Sab\u00eda que dir\u00edas que s\u00ed, te quiero muchooo</p><img src="data:image/gif;base64,BASE64_IMAGEN_GIF" alt="Bailando">';
-  document.body.appendChild(final);
-});
-</script>
+  <div id="recuadro2">
+    <h1>¡Hola Corazón!</h1>
+    <p>Te tengo una pregunta... ¿Quieres ser mi San Valentín? No acepto un no por respuesta.</p>
+    <div class="buttons-container">
+      <button id="btnSi">Sí</button>
+      <button id="btnNo">No</button>
+    </div>
+    <!-- GIF final embebido en Base64 -->
+    <img id="finalGif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA..."
+         style="display:none; margin-top: 1rem;" alt="Gif de celebración">
+  </div>
+
+  <script>
+    // Ejemplo: mostrar el GIF al hacer clic en "Sí"
+    document.getElementById('btnSi').onclick = function() {
+      document.getElementById('finalGif').style.display = 'block';
+    };
+  </script>
 </body>
 </html>
+
