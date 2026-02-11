@@ -1,132 +1,121 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¿Quieres ser mi San Valentín?</title>
 
-<title>Para Daryan 💗</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family: Arial, sans-serif;
-}
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('https://share.google/M3dPUFTSPfRbb260C') no-repeat center center/cover;
+      overflow: hidden;
+    }
 
-body{
-  height:100vh;
-  background: url("IMG-20260205-WA0006.jpg") no-repeat center center/cover;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px 25px;
+      border-radius: 25px;
+      text-align: center;
+      width: 90%;
+      max-width: 340px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
 
-/* capa rosita suave */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:rgba(255,192,203,0.35);
-}
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      color: #ff4d6d;
+    }
 
-/* tarjeta principal */
-.caja{
-  position:relative;
-  z-index:1;
-  background:rgba(255, 220, 230, 0.9);
-  padding:25px;
-  border-radius:20px;
-  max-width:320px;
-  width:90%;
-  text-align:center;
-}
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+      position: relative;
+    }
 
-/* textos */
-h1{
-  font-size:28px;
-  margin-bottom:10px;
-}
+    button {
+      border: none;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
 
-.pregunta{
-  margin:15px 0;
-  font-size:18px;
-}
+    #yes {
+      background: #ff4d6d;
+      color: white;
+    }
 
-/* botones */
-.botones{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-  margin-top:15px;
-}
+    #no {
+      background: #ccc;
+      color: #333;
+      position: absolute;
+    }
 
-button{
-  padding:12px;
-  font-size:18px;
-  border:none;
-  border-radius:15px;
-  cursor:pointer;
-  transition:.2s;
-}
+    .hidden {
+      display: none;
+    }
 
-/* botón sí */
-.si{
-  background:black;
-  color:white;
-}
-
-/* botón no */
-.no{
-  background:white;
-  color:black;
-}
-
-/* gif final */
-#gifFinal{
-  display:none;
-  margin-top:15px;
-  width:100%;
-  border-radius:15px;
-}
-</style>
+    img {
+      width: 180px;
+      margin-top: 15px;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="card" id="card">
+    <h1>¿Quieres ser mi San Valentín? 💖</h1>
 
-<div class="caja">
+    <div class="buttons">
+      <button id="yes">Sí</button>
+      <button id="no">No</button>
+    </div>
 
-  <h1>Hola corazón 💌</h1>
-
-  <div class="pregunta">
-    ¿Quieres ser mi San Valentín?  
-    No acepto un no por respuesta…
+    <div id="result" class="hidden">
+      <h1>Sabía que dirías que sí 💘</h1>
+      <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="love gif" />
+    </div>
   </div>
 
-  <div class="botones">
-    <button class="si" onclick="aceptar()">Sí 🤞</button>
-    <button class="no" onclick="moverNo(this)">No</button>
-  </div>
+  <script>
+    const yesBtn = document.getElementById('yes');
+    const noBtn = document.getElementById('no');
+    const result = document.getElementById('result');
 
-  <!-- GIF -->
-  <img id="gifFinal" src="gif.gif">
+    let scale = 1;
 
-</div>
+    noBtn.addEventListener('click', () => {
+      scale += 0.2;
+      yesBtn.style.transform = `scale(${scale})`;
 
-<script>
-function aceptar(){
-  document.getElementById("gifFinal").style.display="block";
-}
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 100);
 
-function moverNo(btn){
-  const x = Math.random() * (window.innerWidth - btn.clientWidth);
-  const y = Math.random() * (window.innerHeight - btn.clientHeight);
+      noBtn.style.left = x + 'px';
+      noBtn.style.top = y + 'px';
+    });
 
-  btn.style.position = "fixed";
-  btn.style.left = x + "px";
-  btn.style.top = y + "px";
-}
-</script>
-
+    yesBtn.addEventListener('click', () => {
+      document.querySelector('.buttons').classList.add('hidden');
+      result.classList.remove('hidden');
+    });
+  </script>
 </body>
 </html>
+
